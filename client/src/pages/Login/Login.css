@@ -1,0 +1,79 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; /* Centrerar boxen vertikalt */
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px; /* Boxen blir aldrig bredare än 400px */
+}
+
+.login-box h1 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.login-box p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Viktigt för att paddings inte ska sabba bredden */
+}
+
+.login-submit-btn {
+  width: 100%;
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.link-text {
+  color: #ff6600;
+  cursor: pointer;
+}
+
+/* --- MOBIL-ANPASSNING --- */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 20px;
+    box-shadow: none; /* Ser ofta snyggare ut på mobilen utan skugga */
+    border: 1px solid #eee;
+  }
+}

@@ -1,0 +1,135 @@
+.giftcard-page {
+  padding: 100px 20px;
+  background-color: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.giftcard-container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.giftcard-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.giftcard-header h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.giftcard-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  background: white;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  align-items: center;
+}
+
+/* En snygg visuell representation av ett kort */
+.card-mockup {
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+  background: linear-gradient(135deg, #333 0%, #111 100%);
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ff6600;
+}
+
+.card-value {
+  align-self: flex-end;
+  font-size: 1.2rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.giftcard-order-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.giftcard-features {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+}
+
+.giftcard-features li {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #444;
+}
+
+.buy-giftcard-btn {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.giftcard-faq {
+  margin-top: 80px;
+}
+
+.giftcard-faq h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.faq-item {
+  background: #f1f1f1;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.faq-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-item p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+  .giftcard-hero {
+    grid-template-columns: 1fr;
+    padding: 30px;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

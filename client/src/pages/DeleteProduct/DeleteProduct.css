@@ -1,0 +1,133 @@
+.delete-page {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.delete-container {
+  max-width: 800px;
+  width: 100%;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.delete-container h1 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.status-msg {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.status-msg.success { background: #d4edda; color: #155724; }
+.status-msg.error { background: #f8d7da; color: #721c24; }
+
+.product-list-admin {
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.admin-product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-product-item:last-child {
+  border-bottom: none;
+}
+
+.info-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.prod-id {
+  color: #aaa;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.prod-name {
+  font-weight: 600;
+  color: #222;
+  min-width: 200px;
+}
+
+.prod-price {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.delete-action-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.delete-action-btn:hover {
+  background-color: #c82333;
+}
+
+.no-products {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.search-wrapper {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.admin-search-input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: #dc3545; /* Röd färg för att matcha raderings-temat */
+}
+
+.clear-search {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.clear-search:hover {
+  color: #333;
+}

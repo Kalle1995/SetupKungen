@@ -1,0 +1,268 @@
+/* Grundcontainer */
+.product-details-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+/* Tillbaka-knapp */
+.back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #ff6600;
+}
+
+/* --- LAYOUT (Mobil först: Staplat på höjden) --- */
+.details-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Bild-sektion */
+.main-image-wrapper {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.main-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+/* Tumnaglar (Småbilderna under) */
+.image-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+  flex-shrink: 0; /* Hindrar bilderna från att tryckas ihop på mobilen */
+}
+
+.thumb:hover {
+  border-color: #ff6600;
+}
+
+/* Den aktiva bildens styling */
+.thumb.active {
+  border-color: #ff6600;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.2);
+}
+
+/* Info-sektion */
+.details-info h1 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.details-highlights {
+  padding-left: 20px;
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.details-highlights li {
+  margin-bottom: 8px;
+}
+
+/* Köp-boxen */
+.purchase-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.details-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.stock-status {
+  color: #28a745; /* Grön färg för lagerstatus */
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.add-to-cart-btn {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background: #e65c00;
+}
+
+/* Produktbeskrivning */
+.details-description {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+}
+
+.details-description h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.details-description p {
+  line-height: 1.8;
+  color: #444;
+  white-space: pre-line; /* Gör att radbrytningar i texten syns */
+}
+
+/* --- DATOR-LAYOUT (Skärmar bredare än 800px) --- */
+@media (min-width: 800px) {
+  .details-layout {
+    flex-direction: row; /* Lägger bild till vänster och info till höger */
+    align-items: flex-start;
+  }
+
+  .details-images {
+    flex: 1.3; /* Bilden får mer utrymme */
+    position: sticky; /* Gör att bilden stannar kvar när man scrollar infon */
+    top: 100px;
+  }
+
+  .details-info {
+    flex: 1;
+  }
+
+  .main-image {
+    max-height: 500px;
+  }
+
+  .details-info h1 {
+    font-size: 2.4rem;
+  }
+
+  .image-thumbnails {
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+}
+
+/* Laddnings-vy */
+.loading {
+  text-align: center;
+  padding: 100px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Layout för att dela upp bild och info */
+.details-layout {
+  display: flex;
+  gap: 40px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.details-images {
+  flex: 1;
+}
+
+.details-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Specifikationer (Högst upp) */
+.highlights-section {
+  margin-bottom: 20px;
+}
+
+.details-highlights {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.details-highlights li {
+  margin-bottom: 5px;
+}
+
+/* 2. Priset */
+.price-section {
+  margin-bottom: 20px;
+}
+
+.details-price {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* 3. Beskrivningen (Ovanför knappen) */
+.details-description {
+  margin-bottom: 20px;
+}
+
+.details-description h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.details-description p {
+  line-height: 1.5;
+  white-space: pre-wrap; /* Behåller radbrytningar */
+}
+
+/* 4. Köp-knappen */
+.purchase-card {
+  margin-top: 10px;
+}
+
+.add-to-cart-btn {
+  padding: 15px 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Responsiv för mobil */
+@media (max-width: 768px) {
+  .details-layout {
+    flex-direction: column;
+  }
+}

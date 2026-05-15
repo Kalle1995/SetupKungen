@@ -1,0 +1,126 @@
+.about-page {
+  padding: 100px 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.about-container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.lead-text {
+  font-size: 1.2rem;
+  color: #ff6600;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.story-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.story-content p {
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.story-image {
+  background: #f4f4f4;
+  height: 350px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.image-placeholder {
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.value-card {
+  background: #fafafa;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.value-card:hover {
+  background: #fff5f0;
+  transform: translateY(-5px);
+}
+
+.value-card h3 {
+  color: #ff6600;
+  margin-bottom: 15px;
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.about-mission {
+  text-align: center;
+  background: #333;
+  color: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+}
+
+.about-mission h2 {
+  margin-bottom: 20px;
+}
+
+.about-mission p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+@media (max-width: 850px) {
+  .about-story { grid-template-columns: 1fr; }
+  .about-values { grid-template-columns: 1fr; }
+  .about-header h1 { font-size: 2.2rem; }
+}

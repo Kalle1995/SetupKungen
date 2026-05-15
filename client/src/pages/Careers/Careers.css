@@ -1,0 +1,136 @@
+.careers-page {
+  padding: 100px 20px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.careers-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.careers-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.careers-header h1 {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.careers-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.careers-intro {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.careers-intro h2 {
+  color: #ff6600;
+  margin-bottom: 15px;
+}
+
+.careers-intro p {
+  line-height: 1.8;
+  color: #444;
+}
+
+.open-positions h2 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.job-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-left: 5px solid #333;
+  transition: 0.2s;
+}
+
+.job-card:hover {
+  transform: scale(1.01);
+  border-left-color: #ff6600;
+}
+
+.job-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.job-info span {
+  font-size: 0.85rem;
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #666;
+}
+
+.apply-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.apply-btn:hover {
+  background: #ff6600;
+}
+
+.spontaneous-app {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.app-box {
+  background: #333;
+  color: white;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.email-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #ff6600;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .job-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

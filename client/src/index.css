@@ -1,0 +1,26 @@
+/* Denna kod nollställer allt och sätter grunden */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Gör att padding inte ökar storleken på element */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif; /* NetOnNet-liknande typsnitt */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Ta bort blå färg och understrykning från alla länkar som standard */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}

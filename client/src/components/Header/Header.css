@@ -1,0 +1,177 @@
+/* --- GRUNDSTYLING (DATOR) --- */
+.non-header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333;
+  text-decoration: none;
+}
+
+.logo-highlight {
+  color: #ff6600;
+}
+
+.search-container {
+  flex-grow: 1;
+  display: flex;
+  max-width: 600px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-btn {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.icon-item {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.icon-img {
+  font-size: 1.2rem;
+}
+
+.header-nav {
+  background: #333;
+  color: white;
+}
+
+.header-nav ul {
+  display: flex;
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-nav li a, .header-nav li {
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.header-nav li a:hover {
+  background: #444;
+}
+
+.sale {
+  color: #ff6600 !important;
+  font-weight: bold;
+}
+
+.menu-toggle {
+  display: none; /* Dölj hamburgerknappen på datorn */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* --- MOBIL-ANPASSNING --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Visa hamburgerknappen */
+  }
+
+  .search-container {
+    display: none; /* Göm det stora sökfältet i header-top på små mobiler */
+  }
+
+  .icon-text {
+    display: none; /* Visa bara ikoner (👤🛒) för att spara plats */
+  }
+
+  .header-nav {
+    display: none; /* Göm menyn som standard */
+    width: 100%;
+  }
+
+  .header-nav.open {
+    display: block; /* Visa menyn när man klickat på hamburgaren */
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .header-nav li {
+    border-bottom: 1px solid #444;
+    width: 100%;
+  }
+}
+/* --- Header Kundvagnsikon & Röd Siffra --- */
+
+.icon-item.cart {
+  position: relative; /* Krävs för att siffran ska kunna sitta på ikonen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-item.cart:hover {
+  transform: translateY(-2px); /* Liten rörelse när man hovrar */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  background-color: #ff3b30; /* Kraftig röd färg */
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Gör den helt rund */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  border: 2px solid white; /* Vit ram gör att den syns tydligt */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}

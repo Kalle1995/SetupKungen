@@ -1,0 +1,90 @@
+.sustainability-page {
+  padding: 100px 20px;
+  background-color: #f9fbf9; /* Lätt grönaktig vit för "eco"-känsla */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.sustainability-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.sustainability-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.eco-badge {
+  display: inline-block;
+  background: #e1f2e5;
+  color: #2d6a4f;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.sustainability-header h1 {
+  font-size: 2.5rem;
+  color: #1b4332;
+  margin-bottom: 15px;
+}
+
+.sus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.sus-item {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  border-top: 4px solid #40916c;
+}
+
+.sus-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.sus-item h2 {
+  color: #2d6a4f;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.sus-item p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.sus-quote {
+  text-align: center;
+  padding: 40px;
+  background: #2d6a4f;
+  color: white;
+  border-radius: 20px;
+}
+
+.sus-quote blockquote {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.sus-quote cite {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .sustainability-header h1 { font-size: 2rem; }
+}

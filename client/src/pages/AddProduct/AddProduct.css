@@ -1,0 +1,126 @@
+.add-product-page {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.add-product-container {
+  background: white;
+  width: 100%;
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.add-product-container h2 {
+  margin: 0;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.message-banner {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.message-banner.success { background: #e7f7ed; color: #1c7332; }
+.message-banner.error { background: #fdeaea; color: #c5221f; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+input, select, textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fdfdfd;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #ff6600;
+  background: #fff;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Toggle för bildkälla */
+.toggle-container {
+  display: flex;
+  background: #f1f1f1;
+  padding: 4px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.toggle-container button {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.toggle-container button.active {
+  background: white;
+  color: #ff6600;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Spara-knappen */
+.save-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #e65c00;
+}

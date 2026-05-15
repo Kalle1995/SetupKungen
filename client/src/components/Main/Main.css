@@ -1,0 +1,146 @@
+/* Grundinställningar för containern */
+.home-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px; /* Mindre padding på mobilen */
+}
+
+/* Produkt-rutnätet (Grid) */
+.product-grid {
+  display: grid;
+  gap: 15px;
+  /* Som standard: 2 produkter i bredd på mobilen */
+  grid-template-columns: repeat(2, 1fr); 
+}
+
+/* Mobil-anpassning för produktkortet */
+.product-card {
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 100%;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 140px; /* Lite lägre höjd på mobilen */
+  object-fit: contain;
+}
+
+/* Snabba punkter - dölj på små mobiler för att spara plats om du vill, 
+   eller ha dem kvar med mindre text */
+.product-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 0.75rem; 
+  color: #666;
+  flex-grow: 1;
+}
+
+/* --- DATORSKÄRMAR (Här ändrar vi layouten) --- */
+@media (min-width: 768px) {
+  .home-content {
+    padding: 20px;
+  }
+
+  .product-grid {
+    /* 3-4 produkter i bredd på datorn */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  .product-image-container img {
+    height: 200px; /* Större bilder på datorn */
+  }
+
+  .product-highlights {
+    font-size: 0.85rem;
+  }
+  
+  .product-info h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Pris och köpknapp */
+.product-bottom {
+  display: flex;
+  flex-direction: column; /* Stapla pris/knapp på mobilen */
+  gap: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+@media (min-width: 480px) {
+  .product-bottom {
+    flex-direction: row; /* Sida vid sida på större skärmar */
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.buy-btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Container för att centrera knappen */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 60px 0;
+    width: 100%;
+}
+
+/* Själva knappen */
+.load-more-btn {
+    background-color: #2a2a2a; /* Mörk bakgrund för att matcha temat */
+    color: #ffffff;
+    border: 2px solid #3d3d3d; /* Subtil kant */
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Mjuk övergång för animationer */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* När man håller musen över knappen */
+.load-more-btn:hover {
+    background-color: #3d3d3d;
+    border-color: #007bff; /* Lägg till din accentfärg här, t.ex. blå eller grön */
+    transform: translateY(-3px); /* Knappen "lyfter" lite */
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2); /* Snyggt glow */
+}
+
+/* När man klickar på knappen */
+.load-more-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsivitet för mobilen */
+@media (max-width: 768px) {
+    .load-more-btn {
+        width: 90%; /* Knappen blir nästan fullbredd på mobilen */
+        padding: 12px 20px;
+    }
+}
