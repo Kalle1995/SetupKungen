@@ -45,26 +45,41 @@ const attachProductImagesAndHighlights = (products) => {
 
 // --- ROUTES ---
 
-// Hämta alla produkter
+// Hämta ALLA produkter (Sorterade efter ID i databasen)
 app.get('/api/products', (req, res) => {
     try {
-        const products = db.prepare('SELECT * FROM products ORDER BY RANDOM()').all();
+        // Vi ändrade från ORDER BY RANDOM() till ORDER BY id ASC
+        const products = db.prepare('SELECT * FROM products ORDER BY id ASC').all();
         res.json(attachProductImagesAndHighlights(products));
     } catch (err) {
         res.status(500).json({ error: "Kunde inte hämta produkter" });
     }
 });
 
-// Hämta EN specifik produkt
-app.get('/api/products/:id', (req, res) => {
-    const productId = req.params.id;
+// Hämta EN specifik produkt (Felsäker: hanterar BÅDE namn och ID)
+app.get('/api/products/name/:name', (req, res) => {
+    // Vi avkodar parametern från URL:en
+    const param = decodeURIComponent(req.params.name);
+    
     try {
-        const product = db.prepare('SELECT * FROM products WHERE id = ?').get(productId);
+        let product;
+        
+        // FELSÄKER KONTROLL: Om parametern bara innehåller siffror, sök på ID istället!
+        if (!isNaN(param)) {
+            product = db.prepare('SELECT * FROM products WHERE id = ?').get(param);
+        } else {
+            // Annars söker vi på namnet i databasen som vanligt
+            product = db.prepare('SELECT * FROM products WHERE name LIKE ?').get(param);
+        }
+        
         if (!product) {
             return res.status(404).json({ error: "Produkten hittades inte" });
         }
+        
+        // Vi kopplar på bilderna och dina highlights
         const completeProduct = attachProductImagesAndHighlights([product])[0];
         res.json(completeProduct);
+        
     } catch (err) {
         res.status(500).json({ error: "Internt serverfel" });
     }

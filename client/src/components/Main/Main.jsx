@@ -8,7 +8,6 @@ const Main = () => {
 
   useEffect(() => {
     // Vi hämtar alla, men vi kommer styra visningen med visibleCount
-    // Tips: Om du vill ha dem blandade, ändra din SQL i backend till "ORDER BY RANDOM()"
     fetch('http://localhost:5000/api/products')
       .then(res => res.json())
       .then(data => {
@@ -35,7 +34,8 @@ const Main = () => {
         {/* Vi använder slice(0, visibleCount) för att bara visa ett visst antal */}
         {products.slice(0, visibleCount).map(product => (
           <div key={product.id} className="product-card">
-            <Link to={`/product/${product.id}`} className="product-card-link">
+            {/* ÄNDRING HÄR: Vi ändrade från product.id till product.name i länken */}
+            <Link to={`/product/${encodeURIComponent(product.name)}`} className="product-card-link">
               <div className="product-image-container">
                 {product.images && product.images.length > 0 ? (
                   <img src={product.images[0]} alt={product.name} />

@@ -43,7 +43,8 @@ const SearchResults = ({ cartCount, onCartClick, onAddToCart }) => {
           <div className="product-grid">
             {products.map(product => (
               <div key={product.id} className="product-card">
-                <Link to={`/product/${product.id}`} className="product-card-link">
+                {/* ÄNDRING HÄR: Vi ändrade product.id till product.name i länken */}
+                <Link to={`/product/${encodeURIComponent(product.name)}`} className="product-card-link">
                   <div className="product-image-container">
                     {product.images?.[0] ? (
                       <img src={product.images[0]} alt={product.name} />

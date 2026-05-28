@@ -1,48 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import './ProductDetails.css';
 
-const ProductDetails = ({ onAddToCart, cartCount, onCartClick }) => {
-  const { id } = useParams();
+// RENSAT: Vi tar inte längre emot cartCount eller onCartClick, det sköter ShopLayout!
+const ProductDetails = ({ onAddToCart }) => {
+  const { name } = useParams(); // Tar emot namnet från URL:en (t.ex. "NVIDIA GeForce RTX 4070")
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!name) return;
     setLoading(true);
-    fetch(`http://localhost:5000/api/products/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Produkten hittades inte");
-        return res.json();
-      })
-      .then(data => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Fel vid hämtning:", err);
-        setLoading(false);
-      });
-  }, [id]);
+
+    // Vi skickar ENBART till namn-endpointen på backend
+    fetch(`http://localhost:5000/api/products/name/${encodeURIComponent(name)}`)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error("Produkten hittades inte");
+            }
+            return res.json();
+        })
+        .then((data) => {
+            setProduct(data);
+            setLoading(false);
+        })
+        .catch((err) => {
+            console.error("Fel vid hämtning:", err);
+            setProduct(null);
+            setLoading(false);
+        });
+  }, [name]);
 
   if (loading) return <div className="loading">Laddar...</div>;
   if (!product) return <div className="error">Produkten hittades inte.</div>;
 
   return (
     <div className="product-details-page">
-      <Header cartCount={cartCount} onCartClick={onCartClick} />
+      {/* RENSAT: <Header /> är borttagen härifrån eftersom den ligger i ShopLayout */}
       
       <main className="product-details-container">
         <button className="back-btn" onClick={() => navigate(-1)}>← Tillbaka</button>
         
         <div className="details-layout">
-          {/* Bildgalleri - Vänster */}
           <div className="details-images">
             <div className="main-image-wrapper">
-              <img src={product.images[activeImage]} alt={product.name} className="main-image" />
+              <img src={product.images?.[activeImage]} alt={product.name} className="main-image" />
             </div>
             <div className="image-thumbnails">
               {product.images?.map((img, idx) => (
@@ -55,11 +59,9 @@ const ProductDetails = ({ onAddToCart, cartCount, onCartClick }) => {
             </div>
           </div>
 
-          {/* Produktinfo - Höger */}
           <div className="details-info">
             <h1>{product.name}</h1>
 
-            {/* 1. Specifikationer (Högst upp) */}
             {product.highlights && product.highlights.length > 0 && (
               <div className="highlights-section">
                 <ul className="details-highlights">
@@ -70,18 +72,15 @@ const ProductDetails = ({ onAddToCart, cartCount, onCartClick }) => {
               </div>
             )}
 
-            {/* 2. Pris */}
             <div className="price-section">
               <span className="details-price">{product.price}:-</span>
             </div>
 
-            {/* 3. Beskrivning (Ovanför knappen) */}
             <div className="details-description">
               <h3>Beskrivning</h3>
               <p>{product.description}</p>
             </div>
             
-            {/* 4. Köp-knapp (Längst ner i info-delen) */}
             <div className="purchase-card">
               <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
                 Lägg i varukorgen
@@ -90,7 +89,8 @@ const ProductDetails = ({ onAddToCart, cartCount, onCartClick }) => {
           </div>
         </div>
       </main>
-      <Footer />
+
+      {/* RENSAT: <Footer /> är borttagen härifrån eftersom den ligger i ShopLayout */}
     </div>
   );
 };

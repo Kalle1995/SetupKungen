@@ -12,6 +12,7 @@ const Contact = () => {
   };
 
   return (
+    
     <div className="contact-page">
       <div className="contact-container">
         <section className="contact-info-section">

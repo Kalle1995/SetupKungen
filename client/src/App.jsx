@@ -1,25 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Importerat Outlet här
 import { useCart } from './hooks/useCart'; 
 import Home from './pages/Home/Home';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import CategoryPage from './pages/CategoryPage/CategoryPage';
 import Login from './pages/Login/Login';
-import Checkout from './pages/Checkout/Checkout'; // GLÖM INTE IMPORTERA DENNA
+import Checkout from './pages/Checkout/Checkout'; 
 import CartDrawer from './components/CartDrawer/CartDrawer';
 import SearchResults from './pages/SearchResults/SearchResults';
 import AddProduct from './pages/AddProduct/AddProduct';
 import DeleteProduct from './pages/DeleteProduct/DeleteProduct';
-import Contact from './pages/Contact/Contact'; // GLÖM INTE IMPORTERA DENNA
+import Contact from './pages/Contact/Contact'; 
 import Returns from './pages/Returns/Returns';
-import GiftCards from './pages/GiftCards/GiftCards'; // GLÖM INTE IMPORTERA DENNA
-import Shipping from './pages/Shipping/Shipping'; // GLÖM INTE IMPORTERA DENNA
-import Payment from './pages/Payment/Payment'; // GLÖM INTE IMPORTERA DENNA
-import Terms from './pages/Terms/Terms'; // GLÖM INTE IMPORTERA DENNA
-import About from './pages/About/About'; // GLÖM INTE IMPORTERA DENNA
-import Sustainability from './pages/Sustainability/Sustainability'; // GLÖM INTE IMPORTERA DENNA
-import Careers from './pages/Careers/Careers'; // GLÖM INTE IMPORTERA DENNA
+import GiftCards from './pages/GiftCards/GiftCards'; 
+import Shipping from './pages/Shipping/Shipping'; 
+import Payment from './pages/Payment/Payment'; 
+import Terms from './pages/Terms/Terms'; 
+import About from './pages/About/About'; 
+import Sustainability from './pages/Sustainability/Sustainability'; 
+import Careers from './pages/Careers/Careers'; 
+import Header from './components/Header/Header'; // Importerat Header för layouten
+import Footer from './components/Footer/Footer'; // Importerat Footer för layouten
 import './App.css';
+
+// --- LAYOUT-KOMPONENT SOM SKÖTER HEADER & FOOTER FÖR DET VALDA SIDORNA ---
+const ShopLayout = ({ cartCount, onCartClick }) => {
+  return (
+    <>
+      <Header cartCount={cartCount} onCartClick={onCartClick} />
+      <Outlet /> {/* Här laddas den matchande undersidan automatiskt */}
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   const { 
@@ -43,58 +56,43 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={
-          <Home cartCount={cartItems.length} onCartClick={openCart} />
-        } />
-        
-        <Route path="/category/:name" element={
-          <CategoryPage 
-            cartCount={cartItems.length} 
-            onCartClick={openCart} 
-            onAddToCart={addToCart} 
-          />
-        } />
-        
-        <Route path="/product/:id" element={
-          <ProductDetails 
-            onAddToCart={addToCart} 
-            cartCount={cartItems.length} 
-            onCartClick={openCart} 
-          />
-        } />
+        {/* ================= GLOBLAL LAYOUT (HEADER + FOOTER INKLUDERAT) ================= */}
+        <Route element={<ShopLayout cartCount={cartItems.length} onCartClick={openCart} />}>
+          
+          <Route path="/" element={<Home />} />
+          
+          <Route path="/category/:name" element={<CategoryPage onAddToCart={addToCart} />} />
+          
+          <Route path="/product/:name" element={<ProductDetails onAddToCart={addToCart} />} />
 
-        {/* HÄR ÄR DIN NYA KASSA-SIDA */}
-        <Route path="/checkout" element={
-          <Checkout 
-            cartItems={cartItems} 
-            cartCount={cartItems.length} 
-            onCartClick={openCart}
-            onUpdateQuantity={updateQuantity}
-            onRemove={removeFromCart}
-          />
-        } />
+          <Route path="/checkout" element={
+            <Checkout 
+              cartItems={cartItems} 
+              cartCount={cartItems.length} 
+              onCartClick={openCart}
+              onUpdateQuantity={updateQuantity}
+              onRemove={removeFromCart}
+            />
+          } />
 
+          <Route path="/search" element={<SearchResults onAddToCart={addToCart} />} />   
+          
+          {/* Dina 9 statiska sidor som nu automatiskt får Header & Footer */}
+          <Route path="/contact" element={<Contact />} /> 
+          <Route path="/returns" element={<Returns />} />
+          <Route path="/giftcards" element={<GiftCards />} />
+          <Route path="/shipping" element={<Shipping />} /> 
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/terms" element={<Terms />} /> 
+          <Route path="/about" element={<About />} />
+          <Route path="/sustainability" element={<Sustainability />} /> 
+          <Route path="/careers" element={<Careers />} />
+        </Route>
+
+        {/* ================= UTANFÖR LAYOUT (INGEN HEADER ELLER FOOTER) ================= */}
         <Route path="/login" element={<Login />} />
-        
-        <Route path="/search" element={
-          <SearchResults 
-            cartCount={cartItems.length} 
-            onCartClick={openCart} 
-            onAddToCart={addToCart} 
-          />
-        } />   
-
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/delete-product" element={<DeleteProduct />} />
-        <Route path="/contact" element={<Contact />} /> 
-        <Route path="/returns" element={<Returns />} />
-        <Route path="/giftcards" element={<GiftCards />} />
-        <Route path="/shipping" element={<Shipping />} /> 
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/terms" element={<Terms />} /> 
-        <Route path="/about" element={<About />} />
-        <Route path="/sustainability" element={<Sustainability />} /> 
-        <Route path="/careers" element={<Careers />} />
       </Routes>
     </Router>
   );
