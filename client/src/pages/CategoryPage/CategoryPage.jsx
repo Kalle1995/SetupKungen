@@ -25,7 +25,7 @@ const CategoryPage = ({ onAddToCart }) => {
       <main className="home-content">
         <div className="hero-section">
           <h1>{name}</h1>
-          <p>Hitta de bästa produkterna inom {name ? name.toLowerCase() : ''}.</p>
+          
         </div>
 
         {loading ? (

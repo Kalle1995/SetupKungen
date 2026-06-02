@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import './SearchResults.css';
+
 
 const SearchResults = ({ cartCount, onCartClick, onAddToCart }) => {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,6 @@ const SearchResults = ({ cartCount, onCartClick, onAddToCart }) => {
 
   return (
     <div className="search-results-page">
-      <Header cartCount={cartCount} onCartClick={onCartClick} />
       
       <main className="home-content">
         <div className="hero-section">
@@ -71,7 +70,6 @@ const SearchResults = ({ cartCount, onCartClick, onAddToCart }) => {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 };

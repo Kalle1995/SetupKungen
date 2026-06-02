@@ -9,7 +9,6 @@ const Checkout = ({ cartItems, cartCount, onCartClick, onUpdateQuantity, onRemov
 
   return (
     <div className="checkout-page">
-      <Header cartCount={cartCount} onCartClick={onCartClick} />
       
       <main className="checkout-container">
         <h1>Din Kassa</h1>

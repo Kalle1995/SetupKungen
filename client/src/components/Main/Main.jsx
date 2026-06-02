@@ -27,7 +27,7 @@ const Main = () => {
     <main className="home-content">
       <div className="hero-section">
         <h1>Välkommen till SetupKungen</h1>
-        <p>Här börjar ditt nästa bygge.</p>
+        
       </div>
 
       <div className="product-grid">
