@@ -9,29 +9,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 1. Databas-koppling
 const dbPath = path.join(__dirname, '..', 'db', 'db-manager.db');
 const db = new Database(dbPath, { verbose: console.log });
 
-// --- MULTER KONFIGURATION (För bilduppladdning) ---
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = path.join(__dirname, '..', 'public', 'images');
-        // Skapa mappen om den inte finns
+        const dir = path.join(__dirname, '..', '..', 'client', 'public', 'images');
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
         cb(null, dir);
     },
     filename: (req, file, cb) => {
-        // Skapar ett unikt filnamn: t.ex. 1715782930-mus.jpg
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
 const upload = multer({ storage: storage });
 
-// --- HJÄLPFUNKTION (Hämtar bilder och fixar highlights) ---
 const attachProductImagesAndHighlights = (products) => {
     return products.map(product => {
         const images = db.prepare('SELECT image_url FROM product_images WHERE product_id = ?').all(product.id);
@@ -43,9 +38,7 @@ const attachProductImagesAndHighlights = (products) => {
     });
 };
 
-// --- ROUTES ---
 
-// Hämta ALLA produkter (Sorterade efter ID i databasen)
 app.get('/api/products', (req, res) => {
     try {
         // Vi ändrade från ORDER BY RANDOM() till ORDER BY id ASC
@@ -56,19 +49,15 @@ app.get('/api/products', (req, res) => {
     }
 });
 
-// Hämta EN specifik produkt (Felsäker: hanterar BÅDE namn och ID)
 app.get('/api/products/name/:name', (req, res) => {
-    // Vi avkodar parametern från URL:en
     const param = decodeURIComponent(req.params.name);
     
     try {
         let product;
         
-        // FELSÄKER KONTROLL: Om parametern bara innehåller siffror, sök på ID istället!
         if (!isNaN(param)) {
             product = db.prepare('SELECT * FROM products WHERE id = ?').get(param);
         } else {
-            // Annars söker vi på namnet i databasen som vanligt
             product = db.prepare('SELECT * FROM products WHERE name LIKE ?').get(param);
         }
         
@@ -85,7 +74,6 @@ app.get('/api/products/name/:name', (req, res) => {
     }
 });
 
-// Hämta produkter per kategori
 app.get('/api/products/category/:categoryName', (req, res) => {
     const categoryName = req.params.categoryName;
     try {
@@ -102,7 +90,6 @@ app.get('/api/products/category/:categoryName', (req, res) => {
     }
 });
 
-// Hämta alla kategorier (Behövs för din dropdown i AddProduct)
 app.get('/api/categories', (req, res) => {
     try {
         const categories = db.prepare('SELECT * FROM categories').all();
@@ -112,7 +99,6 @@ app.get('/api/categories', (req, res) => {
     }
 });
 
-// Sökfunktion
 app.get('/api/search', (req, res) => {
     const searchTerm = req.query.q;
     if (!searchTerm) return res.json([]);
@@ -129,33 +115,26 @@ app.get('/api/search', (req, res) => {
     }
 });
 
-// LÄGG TILL PRODUKT (Hanterar både fil-uppladdning och text-data)
 app.post('/api/products', upload.single('imageFile'), (req, res) => {
     const { name, price, description, highlights, category_name, imageUrl } = req.body;
 
     try {
-        // 1. Hämta category_id baserat på namnet från dropdownen
         const category = db.prepare('SELECT id FROM categories WHERE name = ?').get(category_name);
         if (!category) {
             return res.status(400).json({ error: "Kategorin hittades inte" });
         }
 
-        // 2. Bestäm vilken bild-sträng som ska användas
         let finalImageUrl = imageUrl; 
         if (req.file) {
-            // Om en fil laddades upp, använd den lokala sökvägen
             finalImageUrl = `/images/${req.file.filename}`;
         }
 
-        // 3. Starta en transaktion för att säkerställa att allt sparas rätt
         const insertProduct = db.prepare('INSERT INTO products (name, price, description, highlights) VALUES (?, ?, ?, ?)');
         const result = insertProduct.run(name, price, description, highlights);
         const productId = result.lastInsertRowid;
 
-        // Spara bilden
         db.prepare('INSERT INTO product_images (product_id, image_url) VALUES (?, ?)').run(productId, finalImageUrl);
 
-        // Koppla till rätt kategori
         db.prepare('INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)').run(productId, category.id);
 
         res.status(201).json({ message: "Produkten har lagts till!" });
@@ -165,7 +144,6 @@ app.post('/api/products', upload.single('imageFile'), (req, res) => {
     }
 });
 
-// Radera en produkt baserat på ID (Säkrast och matchar din frontend)
 app.delete('/api/products/:id', (req, res) => {
     const productId = req.params.id;
 
